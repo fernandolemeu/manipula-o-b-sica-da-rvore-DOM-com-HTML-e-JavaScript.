@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manipulação DOM com JavaScript</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        button {
+            margin: 5px;
+            padding: 10px;
+            cursor: pointer;
+        }
+        p {
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Manipulação Básica da Árvore DOM</h1>
+    <p id="paragrafo-inicial">Este é o parágrafo inicial.</p>
+
+    <button onclick="alterarTexto()">Alterar Texto do Parágrafo</button>
+    <button onclick="adicionarParagrafo()">Adicionar Parágrafo</button>
+    <button onclick="removerParagrafo()">Remover Último Parágrafo</button>
+    <button onclick="mudarCorFundo()">Mudar Cor de Fundo</button>
+    <button onclick="mudarCorTexto()">Mudar Cor do Texto</button>
+
+    <script>
+        // Função para alterar o texto do parágrafo inicial
+        function alterarTexto() {
+            const paragrafo = document.getElementById('paragrafo-inicial');
+            paragrafo.innerHTML = 'O texto do parágrafo foi alterado!';
+        }
+
+        // Função para adicionar um novo parágrafo
+        function adicionarParagrafo() {
+            const novoParagrafo = document.createElement('p');
+            novoParagrafo.innerHTML = 'Novo parágrafo adicionado à página.';
+            document.body.appendChild(novoParagrafo);
+        }
+
+        // Função para remover o último parágrafo
+        function removerParagrafo() {
+            const parrafos = document.querySelectorAll('p');
+            if (parrafos.length > 1) {  // Garantir que pelo menos o parágrafo inicial permaneça
+                parrafos[parrafos.length - 1].remove();
+            } else {
+                alert('Não há parágrafos para remover!');
+            }
+        }
+
+        // Função para mudar a cor de fundo da página de forma aleatória
+        function mudarCorFundo() {
+            const cores = ['#FF5733', '#33FF57', '#3357FF', '#F3F3F3', '#FFC300'];
+            const corAleatoria = cores[Math.floor(Math.random() * cores.length)];
+            document.body.style.backgroundColor = corAleatoria;
+        }
+
+        // Função para mudar a cor do texto do parágrafo inicial de forma aleatória
+        function mudarCorTexto() {
+            const coresTexto = ['#000000', '#FF0000', '#008000', '#0000FF', '#FFA500'];
+            const corAleatoria = coresTexto[Math.floor(Math.random() * coresTexto.length)];
+            const paragrafo = document.getElementById('paragrafo-inicial');
+            paragrafo.style.color = corAleatoria;
+        }
+    </script>
+
+</body>
+</html>
